@@ -1,0 +1,66 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.maven.plugins</groupId>
+    <artifactId>CommonResourcesValidatorUnitTest</artifactId>
+    <packaging>jar</packaging>
+    <version>1.0-SNAPSHOT</version>
+    <name>CommonResourcesValidator Maven Mojo Unit Testing</name>
+    <developers>
+        <developer>
+            <name>Chris Shayan</name>
+            <url>http://www.ChrisShayan.com</url>
+            <email>info@ChrisShayan.com</email>
+        </developer>
+    </developers>
+    <dependencies>
+        <!-- Test libs -->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>${junit.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <!-- Test libs -->
+    </dependencies>
+    <build>
+        <plugins>
+            <plugin>
+                <artifactId>CommonResourcesValidator</artifactId>
+                <configuration>
+                    <commonResourceDirectory>${basedir}/src/test/resources/commonValidator/error1/common</commonResourceDirectory>
+                    <environmentsDirectory>
+                        <acc>${basedir}/src/test/resources/commonValidator/error1/acc</acc>
+                        <dev>${basedir}/src/test/resources/commonValidator/error1/dev</dev>
+                    </environmentsDirectory>
+                </configuration>
+                <executions>
+                    <execution>
+                        <phase>validate</phase>
+                        <goals>
+                            <goal>commonResourcesValidateMojoGoal</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+    <repositories>
+        <repository>
+            <id>seb-nexus</id>
+            <name>SEB Nexus</name>
+            <url>http://172.25.43.3:8080/nexus/content/groups/public/</url>
+        </repository>
+    </repositories>
+    <distributionManagement>
+        <repository>
+            <id>seb-nexus</id>
+            <name>TLX SEB Release</name>
+            <url>http://172.25.43.3:8080/nexus/content/repositories/releases</url>
+        </repository>
+        <snapshotRepository>
+            <id>seb-nexus</id>
+            <name>TLX SEB SNAPSHOT</name>
+            <url>http://172.25.43.3:8080/nexus/content/repositories/snapshots</url>
+        </snapshotRepository>
+    </distributionManagement>
+</project>
